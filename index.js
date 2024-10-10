@@ -1,8 +1,10 @@
 // console.log("Hello, world!")
 
 const express = require("express");
+const cors = require('cors')
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 //get http://localhost:3000/oi 
 app.get('/oi', (req, res)=>{
@@ -34,5 +36,8 @@ app.post('/filmes',(req, res) => {
     filmes.push(filme_novo)
     // exibir a base atualizada 
     res.json(filmes)
+    
 })
+
+
 app.listen(3000, () => console.log("server up & running"))
