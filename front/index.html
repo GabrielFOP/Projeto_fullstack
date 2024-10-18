@@ -9,6 +9,44 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body onload="obterFilmes()">
+
+    <div class="modal fade" id="modalCadastro" aria-labelledby="modalCadastro" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Cadastro de usuário</h1>
+
+                </div>
+                <div class="modal-body">
+                    <div class="d-none alert alert-dismissible fade alert-modal-cadastro" role="alert">
+
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <label for="usuarioCadastroInput" class="col-form-label">Usuário</label>
+                            <input type="text" id="usuarioCadastroInput" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="passwordCadastroInput" class="col-form-label">Senha</label>
+                            <input type="password" id="passwordCadastroInput" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button onclick="cadastrarUsuario()" type="button" class="btn btn-primary">
+                        Cadastrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -16,12 +54,12 @@
                     <a class="navbar-brand" href="#">Filmes</a>
                     <button class="navbar-toggler"
                     type="button"
-                    data-bs-toogle="collapse"
+                    data-bs-toggle="collapse"
                     data-bs-target="#myNav"
                     aria-controls="myNav" aria-expanded="false"
                     aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                   </button>
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
 
                    <div class="collapse navbar-collapse" id="myNav">
                     <div class="navbar-nav ms-auto">
@@ -29,7 +67,7 @@
                      aria-current="page" href="#">
                         Login
                      </a>
-                     <a class="nav-link active me-2" href="#">
+                     <a class="nav-link active me-2" data-bs-toggle="modal" data-bs-target="#modalCadastro" href="#">
                       Novo usuário
                      </a>
                     </div>
