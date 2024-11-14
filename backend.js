@@ -67,25 +67,33 @@ app.post('/filmes',async(req, res) => {
     
 })
 
-app.post('/signup', async (req, res) =>{
-   try{
-    const login = req.body.login
-    const password = req.body.password
-    const criptografada = await bcrypt.hash(password,10)
-    const usuario = new Usuario({
-        login: login,
-        password: criptografada
-    })
-    const respMongo = await usuario.save()
-    console.log(respMongo)
-    res.status(201).end
+app.post('/signup', async (req, res) => {
+    try {
+       const login = req.body.login;
+       const password = req.body.password;
+ 
+       // Criptografar a senha
+       const criptografada = await bcrypt.hash(password, 10);
+ 
+       // Criar novo usuário
+       const usuario = new Usuario({
+          login: login,
+          password: criptografada
+       });
+ 
+       // Salvar no banco de dados
+       const respMongo = await usuario.save();
+       console.log("Usuário criado:", respMongo);
+ 
+       // Enviar resposta de sucesso
+       res.status(201).json({ message: "Usuário cadastrado com sucesso", user: respMongo });
+    } catch (error) {
+       console.error("Erro ao criar usuário:", error);
+ 
+       // Resposta de erro para conflito (usuário já existente ou erro de banco de dados)
+       res.status(409).json({ message: "Erro ao cadastrar usuário", error: error.message });
     }
-    catch(error){
-        console.log(error)
-        res.status(409).end
-
-    }
-})
+ });
 
 app.post('/login', async (req,res) => {
     // login/senha que o usuario enviou
